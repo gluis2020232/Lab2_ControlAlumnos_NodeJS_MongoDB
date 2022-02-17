@@ -1,11 +1,16 @@
 const express = require('express');
-const controladorUsuario = require('../controllers/asignacion.controller');
+const controladorUsuario = require('../controllers/usuario.controller');
 
+const md_autenticacion = require('../middlewares/autenticacion');
 
 const api = express.Router();
 
-api.post('/obtenerAsignacion', controladorUsuario.obtenerAsignacion);
-api.post('/agregarAsignacion', controladorUsuario.agregarAsignacion);
+api.post('/registrarMaestro', controladorUsuario.RegistrarMaestro);
+api.post('/registrarAlumno', controladorUsuario.RegistrarAlumno);
 
+api.post('/login', controladorUsuario.Login);
+
+
+api.put('/editarUsuario/:idUsuario', md_autenticacion.Auth, controladorUsuario.editarUsuario);
 
 module.exports = api;
